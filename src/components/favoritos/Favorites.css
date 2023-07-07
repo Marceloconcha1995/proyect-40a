@@ -1,0 +1,51 @@
+.elemento{
+display: flex;
+flex-direction: column;   
+}
+
+.filtros{
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 16px;
+height: 10vh;
+}
+
+.filtros select{
+height: 30px;
+width: 200px;
+background-color: transparent;
+color: white;
+cursor: pointer;
+border: 2px solid white;
+}
+
+.filtros select option{
+background-color: black;
+}
+
+.filtros button{
+    height: 30px;
+    padding: 0 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: white;
+    border: 1px solid;
+}
+
+.filtros button:hover{
+    
+    border: 2px solid;
+        
+    
+}
+
+.favorito{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 40px;
+}
+

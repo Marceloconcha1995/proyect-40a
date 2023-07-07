@@ -1,0 +1,27 @@
+.nav{
+    width: 100%;
+}
+
+.botones{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    padding: 6px;
+    height: 5vh;
+}
+
+.botones button{
+    height: 30px;
+    padding: 0 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: white;
+    border: 1px solid;
+}
+
+.botones button:hover{
+    border: 2px solid;
+}

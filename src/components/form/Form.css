@@ -1,0 +1,72 @@
+.formulario{
+    margin: auto;
+}
+
+.formulario form{
+    display: flex;
+    flex-direction: column;
+}
+
+form label{
+    color: black;
+    font-weight: bold;
+    margin: 6px;
+}
+
+form input{
+    height: 30px;
+    width: 300px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    color: white;
+    border: 1px solid;
+   
+}
+
+form input::placeholder{
+    color: white;
+    font-weight: bold;
+}
+
+form input:hover{
+    border: 2px solid;
+
+}
+
+form button{
+    height: 30px;
+    padding: 0 30px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    color: white;
+    border: 1px solid;
+    margin-top: 16px;
+    
+}
+
+form button:hover{
+    border: 2px solid;
+    
+}
+
+form h1{
+    font-family: 'Rubik Glitch', cursive;
+    margin-bottom: 2rem;
+    font-size: 50px;
+}
+
+
+.warning {
+    border: solid red 1px;
+    border-radius: 0.2em;
+  }
+  
+  .danger {
+    font-size: 13px;
+    color: red;
+  }
+  
