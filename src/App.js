@@ -7,37 +7,33 @@ import { Form } from './components/form/Form.jsx';
 import {Routes, Route, useLocation, useNavigate} from "react-router-dom";
 import './App.css';
 import Favorites from './components/favoritos/Favorites.jsx';
+import axios from 'axios';
 
+const URL_BASE = "http://localhost:3001/rickandmorty/character";
 
 function App() {
 
    
    const [access, setAccess] = useState(false)
-
-
    const location = useLocation();
    const navigate = useNavigate();
 
-   const EMAIL = 'ejemplo@gmail.com'
-   const PASSWORD = '123456'
-
- 
-function login(user){
-
-   if(user.email === EMAIL && user.password === PASSWORD){
-      setAccess(true)
-      navigate('/home')
-
-   }else{
-      
-      alert('Los campos son obligatorios.')
+   function login(userData) {
+      const { email , password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`)
+      .then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+      });
    }
 
-}
 
 useEffect(()=>{
    !access && navigate('/')
 }, [access])
+
    
 
 function logout(){
@@ -45,67 +41,32 @@ function logout(){
    navigate('/')
 }
 
-function onSearch(name){
-   fetch(`https://rickandmortyapi.com/api/character/${name}`)
-   .then(respuesta => respuesta.json())
-   .then((respuestaJson) => {
+function onSearch(id){
+   axios(`${URL_BASE}/${id}`)
+   .then(({ data }) => {
+      if (data.name) {
 
-   if (respuestaJson.name) {
+         if(characters.some((x) => x.id === id)){
 
-      if(characters.some(p => p.id === respuestaJson.id)){
+            alert(`Ya existe ese personaje con este ID: ${id}`)
 
-         window.alert('¡Ya hay personajes con este ID!');
+         }else{
 
-      }else{
+            setCharacters((oldChars) => [...oldChars, data]);
 
-         setCharacters([...characters, respuestaJson]);
+         }
 
+      } else {
+         window.alert('¡No hay personajes con este ID!');
       }
-
-   } else {
-
-      window.alert('¡No hay personajes con este ID!');
-
-   }
-
- })
-
-}
-
-function onRandom(){
-
-   const randoms = Math.ceil(Math.random() * 183) 
-
-   fetch(`https://rickandmortyapi.com/api/character/${randoms}`)
-   .then(respuesta => respuesta.json())
-   .then((respuestaJson) => {
-
-   if (respuestaJson.name) {
-
-      if(characters.some(p => p.id === respuestaJson.id)){
-
-         window.alert('¡Ya hay personajes con este ID!');
-
-      }else{
-
-         setCharacters([...characters, respuestaJson]);
-
-      }
-
-   } else {
-
-      window.alert('¡No hay personajes con este ID!');
-
-   }
-
- })
+   });
 
 }
 
 function onClose(id){
 
    setCharacters(characters.filter(p =>{
-      return p.id !== Number(id)
+      return p.id !== id
    }))
 
 
@@ -116,7 +77,7 @@ const [characters, setCharacters] = useState([]);
    return (
       <div className='contenido'>
 
-       {location.pathname !== '/' && <Nav onSearch={onSearch} onRandom={onRandom} logout={logout} />}
+       {location.pathname !== '/' && <Nav onSearch={onSearch} logout={logout} />}
 
        {location.pathname === '/home' && !characters.length ? <div className='text'><h1>Aun no has agregado ninguna card.</h1></div> : ''}
 

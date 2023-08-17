@@ -8,7 +8,7 @@ export default function SearchBar(props) {
 
    function handleChange(event){
 
-      setId(event.target.value)
+         setId(event.target.value)
 
    }
 
@@ -27,6 +27,7 @@ export default function SearchBar(props) {
          type='search' />
          <button onClick={()=>{
             props.onSearch(id)
+            setId('')
          }}
          >
             Agregar</button>

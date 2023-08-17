@@ -17,10 +17,6 @@ return (
         <Link to={"/favorites"}>
         <button>Favoritos</button>
         </Link>
-
-        <button onClick={props.onRandom} >
-          Random
-        </button>
         
         <Link to={"/about"} >
         <button>About</button>

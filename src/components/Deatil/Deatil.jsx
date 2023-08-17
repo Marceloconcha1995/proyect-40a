@@ -9,7 +9,7 @@ export default function Deatil(){
     const [character, setCharacter] = useState({});
 
     useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    fetch(`http://localhost:3001/rickandmorty/character/${id}`)
    .then(respuesta => respuesta.json())
    .then((respuestaJson) => {
 

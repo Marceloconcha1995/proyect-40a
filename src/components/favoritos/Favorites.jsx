@@ -14,7 +14,6 @@ export default function Favorites(){
   const dispatch = useDispatch();
 
   function handleOrder(event){
-   
     dispatch(orderCards(event.target.value))
     setAux(true)
     
